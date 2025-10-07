@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <h2>Manager Review — Application #{{ application.id }}</h2>
+  <p>Applicant: {{ application.account.name }} (Income: {{ application.account.monthly_income }})</p>
+  <p>Requested: {{ application.requested_amount }} for {{ application.requested_tenure }} months</p>
+  <p>Selected loan: {{ application.selected_loan.loan_type if application.selected_loan else "N/A" }}</p>
+  <p>Score: {{ application.score }}</p>
+  <form method="post">
+    <button class="btn" type="submit">Simulate Manager Decision</button>
+  </form>
+</div>
+{% endblock %}

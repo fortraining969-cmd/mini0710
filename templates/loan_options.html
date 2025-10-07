@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <h2>Recommended Options for {{ account.name }}</h2>
+  <p>Application id: {{ application.id }} | Score: {{ application.score }}</p>
+
+  {% if recs %}
+    <form method="post" action="{{ url_for('main.loan_select', app_id=application.id) }}">
+      <h3>Top recommendations</h3>
+      {% for r in recs %}
+        <div style="margin-bottom:8px;">
+          <input type="radio" name="choice" value="{{ r.loan.id }}" id="opt{{ r.loan.id }}" {% if loop.first %}checked{% endif %}>
+          <label for="opt{{ r.loan.id }}">{{ r.loan.loan_type }} — score: {{ r.score }} — interest: {{ r.loan.interest_rate }}% — amount: {{ r.loan.min_amount }}-{{ r.loan.max_amount }} tenure: {{ r.loan.min_tenure }}-{{ r.loan.max_tenure }}</label>
+        </div>
+      {% endfor %}
+      <div>
+        <button class="btn" type="submit">Pick Selected Option</button>
+        <input type="hidden" name="base_loan_id" value="{{ recs[0].loan.id }}">
+        <button class="btn" name="choice" value="custom">Ask for Custom Options</button>
+      </div>
+    </form>
+  {% endif %}
+
+  {% if custom_options %}
+    <h3>Custom suggestions (based on {{ base.loan_type }})</h3>
+    <ul>
+      {% for c in custom_options %}
+        <li>{{ c.loan_type }} — amount: {{ c.amount }} — tenure: {{ c.tenure }} months — interest: {{ c.interest_rate }}%</li>
+      {% endfor %}
+    </ul>
+    <p>To proceed with a custom option, pick the closest existing loan type in previous page and update values (demo simplification).</p>
+  {% endif %}
+</div>
+{% endblock %}

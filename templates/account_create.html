@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <h2>Create Account</h2>
+  <form method="post">
+    <label>Name</label><br><input name="name" required><br>
+    <label>Email</label><br><input name="email" value="{{ email }}" required><br>
+    <label>Password</label><br><input name="password" type="password" required><br>
+    <label>Phone</label><br><input name="phone"><br>
+    <label>Gender</label><br><input name="gender"><br>
+    <label>Occupation</label><br><input name="occupation"><br>
+    <label>Monthly Income</label><br><input name="monthly_income" type="number" step="0.01"><br>
+    <label>PAN (optional)</label><br><input name="pan"><br>
+    <label>Aadhaar (optional)</label><br><input name="aadhaar"><br><br>
+    <button class="btn" type="submit">Create & go to Login</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <h2>Loan Request for {{ account.name }}</h2>
+  <form method="post">
+    <label>Amount</label><br><input name="amount" type="number" step="0.01" required><br>
+    <label>Tenure (months)</label><br><input name="tenure" type="number" required><br>
+    <label>Flexible with tenure/amount?</label> <input type="checkbox" name="flexible"><br><br>
+    <button class="btn" type="submit">Show Best Options</button>
+  </form>
+  <hr>
+  <h3>Available Loan Types</h3>
+  <ul>
+  {% for opt in options %}
+    <li>{{ opt.loan_type }} — Interest: {{ opt.interest_rate }}% — Amount: {{ opt.min_amount }} to {{ opt.max_amount }}</li>
+  {% endfor %}
+  </ul>
+</div>
+{% endblock %}

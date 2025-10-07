@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <h2>Check Account</h2>
+  <form method="post" action="{{ url_for('main.account_check') }}">
+    <label>Email (we'll check if you have an account):</label><br>
+    <input type="email" name="email" required>
+    <button class="btn" type="submit">Check</button>
+  </form>
+</div>
+{% endblock %}

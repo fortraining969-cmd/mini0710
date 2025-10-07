@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <h2>Result for Application #{{ application.id }}</h2>
+  <p>Status: {{ application.status.value }}</p>
+  <p>Manager comment: {{ application.manager_comment }}</p>
+
+  {% if second_best %}
+    <h3>Second best option:</h3>
+    <p>{{ second_best["loan"].loan_type }} — score: {{ second_best["score"] }} — interest: {{ second_best["loan"].interest_rate }}%</p>
+    <p>If customer accepts second best, we can approve that as an alternate.</p>
+  {% endif %}
+
+  {% if application.status.value == "APPROVED" %}
+    <p>Congratulations — loan approved.</p>
+  {% else %}
+    <p>We're sorry. You were not approved. Offer alternate options or re-apply later.</p>
+  {% endif %}
+</div>
+{% endblock %}

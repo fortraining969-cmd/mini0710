@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Loan App</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; padding: 16px; border-radius: 6px; margin-bottom: 12px; }
+    .btn { padding: 8px 12px; border-radius: 4px; text-decoration: none; display:inline-block; background:#007bff; color:#fff;}
+    form { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Loan Approval Demo</h1>
+  <div>
+    <a class="btn" href="{{ url_for('main.index') }}">Home</a>
+    <a class="btn" href="{{ url_for('main.account_check') }}">Start</a>
+    <a class="btn" href="{{ url_for('main.login') }}">Login</a>
+  </div>
+  <hr>
+  {% block content %}{% endblock %}
+  <hr>
+  <small>Demo app — not for production use</small>
+</body>
+</html>
